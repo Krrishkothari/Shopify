@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-lg-5 mx-auto border rounded p-4 mt-5">
+        <center><h3 class="alert mx-auto border rounded">Create An Account</h3></center>
+        
+        <form action="{% url 'signup' %}" method="POST">  
+            {% csrf_token %}
+            
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+             </div>
+            {% endif %}
+
+            <!-- First Name -->
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" value="{{values.first_name}}" class="form-control" placeholder="John" required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" value="{{values.last_name}}" class="form-control" placeholder="Doe" required>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" name="phone" value="{{values.phone}}" class="form-control" placeholder="1234567890" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input required type="email" name="email" value="{{values.email}}" class="form-control" placeholder="example@gmail.com" required>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="*********" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group mt-3">
+                <input type="submit" value="Create Account" class="btn btn-primary btn-block">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
